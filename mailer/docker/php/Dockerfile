@@ -30,6 +30,6 @@ RUN mkdir -p /appdata/www
 
 USER appuser
 RUN composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --optimize-autoloader --classmap-authoritative \
-	&& composer clear-cache
+    && composer clear-cache
 
 WORKDIR /appdata/www
