@@ -15,7 +15,7 @@ App\Entity\User:
     address:
       groups: [ user_read ]
     token:
-      groups: [ user_read ]
+      groups: [ user_activate ]
     active:
       groups: [user_read]
     createdAt:

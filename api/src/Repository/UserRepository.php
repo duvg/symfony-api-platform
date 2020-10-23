@@ -28,6 +28,7 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * Save a user Entity
      * @param User $user
      * @throws ORMException
      * @throws OptimisticLockException
@@ -38,6 +39,7 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * Remove user entity
      * @param User $user
      * @throws ORMException
      * @throws OptimisticLockException
@@ -45,5 +47,14 @@ class UserRepository extends BaseRepository
     public function remove(User $user): void
     {
         $this->removeEntity($user);
+    }
+
+    public function findOneInactiveByIdAndTokenOrFail(string $id,  string $token): User
+    {
+        if (null === $user = $this->objectRepository->findOneBy(['id' => $id, 'token' => $token, 'active' => false])) {
+            throw UserNotFoundException::fromUserIdAndToken($id, $token);
+        }
+
+        return $user;
     }
 }
