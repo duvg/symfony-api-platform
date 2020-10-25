@@ -42,7 +42,7 @@ class RequestService
         }
 
         if ($isRequired) {
-            throw new BadRequestHttpException(\sprintf('Missing field %s'. $fieldName));
+            throw new BadRequestHttpException(\sprintf('Missing field %s', $fieldName));
         }
 
         return null;

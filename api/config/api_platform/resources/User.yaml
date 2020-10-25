@@ -3,6 +3,7 @@ App\Entity\User:
     normalization_context:
       groups: [user_read]
   collectionOperations:
+    # Register a new user
     register:
       method: POST
       path: /users/register
@@ -11,6 +12,7 @@ App\Entity\User:
         groups: [user_post]
       openapi_context:
         summary: Register a new user
+    # Config for resend activation email
     resend_activation_email:
       method: POST
       path: /users/resend_activation_email
@@ -37,6 +39,91 @@ App\Entity\User:
                   properties:
                     message:
                       type: string
+    # Config for login action
+    login:
+      method: POST
+      route_name: api_login_check
+      openapi_context:
+        summary: Login a user in the API
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+    # Config for request reset password email
+    request_reset_password:
+      method: POST
+      path: /users/request_reset_password
+      controller: App\Api\Action\User\RequestResetPassword
+      deserialize: false
+      openapi_context:
+        summary: Request an email with link to reset a user password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+    reset_password:
+      method: POST
+      path: /users/reset_password
+      controller: App\Api\Action\User\ResetPassword
+      deserialize: false
+      openapi_context:
+        summary: Reset user password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                    required: true
+                  resetPasswordToken:
+                    type: string
+                    required: true
+                  password:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    user:
+                      type: object
   itemOperations:
     get:
       method: GET
