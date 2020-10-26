@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace App\Service\User;
 
-
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Service\Request\RequestService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\HttpFoundation\Request;
 
 class ActivateAccountService
 {
-    /**
-     * @var UserRepository
-     */
     private UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository)
@@ -23,13 +20,15 @@ class ActivateAccountService
     }
 
     // Logic for activate user account
-    public function activate(Request  $request, string $id): User
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function activate(string $id, string $token): User
     {
         // Find user by id and token in request
-        $user = $this->userRepository->findOneInactiveByIdAndTokenOrFail(
-            $id,
-            RequestService::getField($request, 'token')
-        );
+        $user = $this->userRepository->findOneInactiveByIdAndTokenOrFail($id, $token);
 
         // set activate to true and token to null
         $user->setActive(true);

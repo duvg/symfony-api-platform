@@ -4,25 +4,20 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
-use Doctrine\Persistence\Mapping\MappingException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\Mapping\MappingException;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
 
 abstract class BaseRepository
 {
-    /**
-     * @var ManagerRegistry
-     */
     private ManagerRegistry $managerRegistry;
-    /**
-     * @var Connection
-     */
+
     protected Connection $connection;
 
     protected ObjectRepository $objectRepository;
@@ -37,7 +32,6 @@ abstract class BaseRepository
     abstract protected static function entityClass(): string;
 
     /**
-     * @param object $entity
      * @throws ORMException
      */
     public function persistEntity(object $entity): void
@@ -57,7 +51,6 @@ abstract class BaseRepository
     }
 
     /**
-     * @param object $entity
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -68,7 +61,6 @@ abstract class BaseRepository
     }
 
     /**
-     * @param object $entity
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -80,21 +72,17 @@ abstract class BaseRepository
 
     /* query for insert and get data*/
 
-
     /**
-     * @param string $query
-     * @param array $params
      * @return array|bool
+     *
      * @throws Exception
      */
     protected function executeFetchQuery(string $query, array $params = []): array
     {
-        return $this->connection->executeQuery($query, $params)>fetchAll();
+        return $this->connection->executeQuery($query, $params) > fetchAll();
     }
 
     /**
-     * @param string $query
-     * @param array $params
      * @throws Exception
      */
     protected function executeQuery(string $query, array $params = []): void
@@ -115,5 +103,4 @@ abstract class BaseRepository
 
         return $this->managerRegistry->resetManager();
     }
-
 }

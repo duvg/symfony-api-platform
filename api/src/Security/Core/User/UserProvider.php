@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Security\Core\User;
 
-
 use App\Entity\User;
 use App\Exceptions\User\UserNotFoundException;
 use App\Repository\UserRepository;
@@ -16,35 +15,27 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
-    /**
-     * @var UserRepository
-     */
     private UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {
-
         $this->userRepository = $userRepository;
     }
 
     /**
-     * Load user by email
-     * @param string $username
-     * @return UserInterface
+     * Load user by email.
      */
     public function loadUserByUsername(string $username): UserInterface
     {
         try {
             return $this->userRepository->findOneByEmailOrFail($username);
-        } catch(UserNotFoundException $e) {
+        } catch (UserNotFoundException $e) {
             throw new UsernameNotFoundException(\sprintf('User %s not fount', $username));
         }
     }
 
     /**
-     * Refresh user from user instances
-     * @param UserInterface $user
-     * @return UserInterface
+     * Refresh user from user instances.
      */
     public function refreshUser(UserInterface $user): UserInterface
     {
@@ -57,9 +48,8 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
     }
 
     /**
-     * Encrypt new password for user
-     * @param UserInterface $user
-     * @param string $newEncodedPassword
+     * Encrypt new password for user.
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
@@ -71,13 +61,10 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
     }
 
     /**
-     * Verify if class is supported
-     * @param string $class
-     * @return bool
+     * Verify if class is supported.
      */
     public function supportsClass(string $class): bool
     {
         return User::class === $class;
     }
-
 }

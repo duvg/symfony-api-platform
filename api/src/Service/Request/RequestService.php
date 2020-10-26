@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service\Request;
 
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RequestService
 {
     /**
-     * @param Request $request
-     * @param string $fieldName
-     * @param bool $isRequired
-     * @param bool $isArray
      * @return mixed
      */
     public static function getField(Request $request, string $fieldName, bool $isRequired = true, bool $isArray = false)
@@ -31,7 +26,7 @@ class RequestService
             }
 
             if ($isRequired) {
-                throw new BadRequestHttpException(\sprintf('Missing field %s'. $fieldName));
+                throw new BadRequestHttpException(\sprintf('Missing field %s'.$fieldName));
             }
 
             return null;
@@ -52,7 +47,7 @@ class RequestService
     public static function arrayFlatter(array $array): array
     {
         $return = [];
-        foreach($array as $key => $value) {
+        foreach ($array as $key => $value) {
             if (\is_array($value)) {
                 $return = \array_merge($return, self::arrayFlatter($value));
             } else {
@@ -62,6 +57,4 @@ class RequestService
 
         return $return;
     }
-
-
 }

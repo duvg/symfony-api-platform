@@ -4,53 +4,38 @@ declare(strict_types=1);
 
 namespace App\Service\User;
 
-
 use App\Entity\User;
 use App\Exceptions\User\UserAlreadyExistException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
-use App\Service\Request\RequestService;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class UserRegisterService
 {
-    /**
-     * @var UserRepository
-     */
     private UserRepository $userRepository;
-    /**
-     * @var EncoderService
-     */
+
     private EncoderService $encoderService;
-    /**
-     * @var MessageBusInterface
-     */
+
     private MessageBusInterface $messageBus;
 
     public function __construct(UserRepository $userRepository, EncoderService $encoderService, MessageBusInterface $messageBus)
     {
-
         $this->userRepository = $userRepository;
         $this->encoderService = $encoderService;
         $this->messageBus = $messageBus;
     }
 
-    public function create(Request $request): User
+    public function create(string $name, string $email, string $password): User
     {
-        $name = RequestService::getField($request, 'name');
-        $email = RequestService::getField($request, 'email');
-        $password = RequestService::getField($request, 'password');
-
         $user = new User($name, $email);
         $user->setPassword($this->encoderService->generateEncodedPassword($user, $password));
 
         try {
             $this->userRepository->save($user);
-        } catch ( \Exception $exception) {
+        } catch (\Exception $exception) {
             throw UserAlreadyExistException::fromEmail($email);
         }
 

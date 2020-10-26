@@ -24,8 +24,6 @@ class User implements UserInterface
 
     /**
      * User constructor.
-     * @param string $name
-     * @param string $email
      */
     public function __construct(string $name, string $email)
     {
@@ -43,158 +41,101 @@ class User implements UserInterface
         $this->markAsUpdated();
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
     public function setEmail(string $email): void
     {
         // Validate email
-        if(!\filter_var($email, \FILTER_VALIDATE_EMAIL)) {
+        if (!\filter_var($email, \FILTER_VALIDATE_EMAIL)) {
             throw new \LogicException('Invalid Email');
         }
 
         $this->email = $email;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * @param string|null $password
-     */
     public function setPassword(?string $password): void
     {
         $this->password = $password;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    /**
-     * @param string|null $telephone
-     */
     public function setTelephone(?string $telephone): void
     {
         $this->telephone = $telephone;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param string|null $address
-     */
     public function setAddress(?string $address): void
     {
         $this->address = $address;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    /**
-     * @param string|null $avatar
-     */
     public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
     }
 
-    /**
-     * @return string|null
-     */
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    /**
-     * @param string|null $token
-     */
     public function setToken(?string $token): void
     {
         $this->token = $token;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResetPasswordToken(): ?string
     {
         return $this->resetPasswordToken;
     }
 
-    /**
-     * @param string|null $resetPasswordToken
-     */
     public function setResetPasswordToken(?string $resetPasswordToken): void
     {
         $this->resetPasswordToken = $resetPasswordToken;
     }
 
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->active;
     }
 
-    /**
-     * @param bool $active
-     */
     public function setActive(bool $active): void
     {
         $this->active = $active;
@@ -208,9 +149,6 @@ class User implements UserInterface
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
@@ -221,7 +159,6 @@ class User implements UserInterface
         $this->updatedAt = new \DateTime();
     }
 
-
     public function getRoles(): array
     {
         return [];
@@ -229,7 +166,6 @@ class User implements UserInterface
 
     public function getSalt(): void
     {
-
     }
 
     public function getUsername(): string
@@ -239,6 +175,5 @@ class User implements UserInterface
 
     public function eraseCredentials(): void
     {
-
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Api\ArgumentResolver;
 
-
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,14 +14,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserArgumentResolver implements ArgumentValueResolverInterface
 {
-
-    /**
-     * @var TokenStorageInterface
-     */
     private TokenStorageInterface $tokenStorage;
-    /**
-     * @var UserRepository
-     */
+
     private UserRepository $userRepository;
 
     public function __construct(TokenStorageInterface $tokenStorage, UserRepository $userRepository)

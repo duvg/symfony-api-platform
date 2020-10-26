@@ -11,7 +11,6 @@ use Doctrine\ORM\ORMException;
 
 class UserRepository extends BaseRepository
 {
-
     protected static function entityClass(): string
     {
         return User::class;
@@ -23,6 +22,7 @@ class UserRepository extends BaseRepository
         if (null === $user = $this->objectRepository->find($id)) {
             throw UserNotFoundException::fromUserId($id);
         }
+
         return $user;
     }
 
@@ -37,8 +37,8 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * Save a user Entity
-     * @param User $user
+     * Save a user Entity.
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -48,8 +48,8 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * Remove user entity
-     * @param User $user
+     * Remove user entity.
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -58,7 +58,7 @@ class UserRepository extends BaseRepository
         $this->removeEntity($user);
     }
 
-    public function findOneInactiveByIdAndTokenOrFail(string $id,  string $token): User
+    public function findOneInactiveByIdAndTokenOrFail(string $id, string $token): User
     {
         if (null === $user = $this->objectRepository->findOneBy(['id' => $id, 'token' => $token, 'active' => false])) {
             throw UserNotFoundException::fromUserIdAndToken($id, $token);
