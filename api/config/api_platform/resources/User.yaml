@@ -92,9 +92,22 @@ App\Entity\User:
                   properties:
                     message:
                       type: string
+
+  itemOperations:
+    get:
+      method: GET
+    activate:
+      method: PUT
+      path: /users/{id}/activate
+      controller: App\Api\Action\User\ActivateAccount
+      deserialize: false
+      denormalization_context:
+        groups: [user_activate]
+      openapi_context:
+        summary: Activate a User
     reset_password:
-      method: POST
-      path: /users/reset_password
+      method: PUT
+      path: /users/{id}/reset_password
       controller: App\Api\Action\User\ResetPassword
       deserialize: false
       openapi_context:
@@ -105,9 +118,6 @@ App\Entity\User:
               schema:
                 type: object
                 properties:
-                  userId:
-                    type: string
-                    required: true
                   resetPasswordToken:
                     type: string
                     required: true
@@ -118,15 +128,13 @@ App\Entity\User:
           200:
             description: OK
             content:
-              application/json:
+              application/ld+json:
                 schema:
-                  type: object
-                  properties:
-                    user:
-                      type: object
+                  $ref: '#/components/schemas/User:jsonld-user_read'
+
     change_password:
-      method: POST
-      path: /users/change_password
+      method: PUT
+      path: /users/{id}/change_password
       controller: App\Api\Action\User\ChangePassword
       deserialize: false
       openapi_context:
@@ -149,20 +157,4 @@ App\Entity\User:
             content:
               application/json:
                 schema:
-                  type: object
-                  properties:
-                    user:
-                      type: object
-
-  itemOperations:
-    get:
-      method: GET
-    activate:
-      method: PUT
-      path: /users/{id}/activate
-      controller: App\Api\Action\User\ActivateAccount
-      deserialize: false
-      denormalization_context:
-        groups: [user_activate]
-      openapi_context:
-        summary: Activate a User
+                  $ref: '#/components/schemas/User:jsonld-user_read'
