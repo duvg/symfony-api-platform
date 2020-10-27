@@ -1,0 +1,22 @@
+parameters: # password
+  testing_password_hash: $argon2i$v=19$m=16,t=2,p=1$cGFzc3dvcmQ$A9HKT/FCm9ft8VCFgT4rVw
+App\Entity\User:
+  User-0:
+    __construct:
+      name: Yamid
+      email: yamid@api.com
+    password: <{testing_password_hash}>
+    active: true
+    resetPasswordToken: '123456'
+  User-1:
+    __construct:
+      name: Carlos
+      email: carlos@api.com
+    password: <{testing_password_hash}>
+    active: true
+  User-2:
+    __construct:
+      name: Jose
+      email: jose@api.com
+    password: <{testing_password_hash}>
+    active: false
