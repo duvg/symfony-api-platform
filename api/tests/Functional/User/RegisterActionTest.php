@@ -16,7 +16,14 @@ class RegisterActionTest extends UserTestBase
             'password' => '123456'
         ];
 
-        self::$client->request('POST', \sprintf('%s/register', $this->endpoint), [], [], [], \json_encode($payload));
+        self::$client->request(
+            'POST',
+            \sprintf('%s/register', $this->endpoint),
+            [],
+            [],
+            [],
+            \json_encode($payload)
+        );
 
         $response = self::$client->getResponse();
 
@@ -33,7 +40,14 @@ class RegisterActionTest extends UserTestBase
             'password' => '123456',
         ];
 
-        self::$client->request('POST', \sprintf('%s/register', $this->endpoint), [], [], [], \json_encode($payload));
+        self::$client->request(
+            'POST',
+            \sprintf('%s/register', $this->endpoint),
+            [],
+            [],
+            [],
+            \json_encode($payload)
+        );
 
         $response = self::$client->getResponse();
 
@@ -48,7 +62,14 @@ class RegisterActionTest extends UserTestBase
             'password' => '1',
         ];
 
-        self::$client->request('POST', \sprintf('%s/register', $this->endpoint), [], [], [], \json_encode($payload));
+        self::$client->request(
+            'POST',
+            \sprintf('%s/register', $this->endpoint),
+            [],
+            [],
+            [],
+            \json_encode($payload)
+        );
 
         $response = self::$client->getResponse();
 
