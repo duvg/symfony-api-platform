@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\User;
 
-
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationFailureResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -32,7 +31,7 @@ class LoginActionTest extends UserTestBase
         ];
 
         self::$yamid->request('POST', \sprintf('%s/login_check', $this->endpoint), [], [], [], \json_encode($payload));
-        
+
         $response = self::$yamid->getResponse();
 
         $this->assertEquals(JsonResponse::HTTP_UNAUTHORIZED, $response->getStatusCode());
