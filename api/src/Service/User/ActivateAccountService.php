@@ -22,6 +22,9 @@ class ActivateAccountService
     // Logic for activate user account
 
     /**
+     * @param string $id
+     * @param string $token
+     * @return User
      * @throws ORMException
      * @throws OptimisticLockException
      */
