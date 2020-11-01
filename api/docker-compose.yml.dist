@@ -4,7 +4,7 @@ services:
     symfony-api-platform-web:
         container_name: symfony-api-platform-web
         build:
-            context: -/docker/nginx
+            context: ./docker/nginx
             args:
                 UID: $U_ID
         ports:
@@ -19,7 +19,7 @@ services:
     symfony-api-platform-be:
         container_name: symfony-api-platform-be
         build:
-            contextt: docker/php
+            context: docker/php
             args:
                 UID: $U_ID
         environment:
@@ -55,7 +55,7 @@ services:
         networks:
             - symfony-api-platform-network
 volumes:
-    symfony-api-platform-db-data
+    symfony-api-platform-db-data:
 networks:
-    symfony-api-platform-network
-    external: true
+    symfony-api-platform-network:
+        external: true
