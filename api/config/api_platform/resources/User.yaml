@@ -93,6 +93,23 @@ App\Entity\User:
                     message:
                       type: string
 
+    upload_avatar:
+      method: POST
+      path: /users/{id}/avatar
+      controller: App\Api\Action\User\UploadAvatar
+      deserialize: false
+      openapi_context:
+        summary: Updates user avatar
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  avatar:
+                    type: string
+                    format: binary
+
   itemOperations:
     get:
       method: GET
