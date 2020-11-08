@@ -61,7 +61,7 @@ class FileService
     {
         try {
             if (null !== $path) {
-                $this->defaultStorage->delete(\explode($this->mediaPath, $path)[1]);
+                $this->defaultStorage->delete($path);
             }
         } catch (\Exception $e) {
             $this->logger->warning(\sprintf('File %s not found in the storage', $path));
