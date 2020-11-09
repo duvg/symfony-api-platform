@@ -86,7 +86,7 @@ class FileServiceTest extends TestCase
 
     public function testDeleteFile(): void
     {
-        $path = \sprintf('%s%s', $this->mediaPath, 'avatar/123.png');
+        $path = \sprintf('%s/%s', $this->mediaPath, 'avatar/123.png');
 
 
         $this->storage
@@ -100,12 +100,12 @@ class FileServiceTest extends TestCase
 
     public function testDeleteNonExistingFile(): void
     {
-        $path = \sprintf('%s%s', $this->mediaPath, 'avatar/123.png');
+        $path = \sprintf('%s/%s', $this->mediaPath, 'avatar/123.png');
 
         $this->storage
             ->expects($this->exactly(1))
             ->method('delete')
-            ->with(\explode($this->mediaPath, $path)[1])
+            ->with($path)
             ->willThrowException(new FileNotFoundException($path));
 
         $this->logger
