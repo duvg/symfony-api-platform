@@ -3,7 +3,6 @@ App\Entity\User:
     normalization_context:
       groups: [user_read]
   collectionOperations:
-    # Register a new user
     register:
       method: POST
       path: /users/register
@@ -12,7 +11,6 @@ App\Entity\User:
         groups: [user_register]
       openapi_context:
         summary: Register a new user
-    # Config for resend activation email
     resend_activation_email:
       method: POST
       path: /users/resend_activation_email
@@ -31,7 +29,7 @@ App\Entity\User:
                     required: true
         responses:
           200:
-            decription: OK
+            description: OK
             content:
               application/json:
                 schema:
@@ -39,7 +37,6 @@ App\Entity\User:
                   properties:
                     message:
                       type: string
-    # Config for login action
     login:
       method: POST
       route_name: api_login_check
@@ -65,14 +62,13 @@ App\Entity\User:
                   properties:
                     token:
                       type: string
-    # Config for request reset password email
     request_reset_password:
       method: POST
       path: /users/request_reset_password
       controller: App\Api\Action\User\RequestResetPassword
       deserialize: false
       openapi_context:
-        summary: Request an email with link to reset a user password
+        summary: Request an email with a URL to reset a user password
         requestBody:
           content:
             application/json:
@@ -92,14 +88,13 @@ App\Entity\User:
                   properties:
                     message:
                       type: string
-
     upload_avatar:
       method: POST
       path: /users/{id}/avatar
       controller: App\Api\Action\User\UploadAvatar
       deserialize: false
       openapi_context:
-        summary: Updates user avatar
+        summary: Updates the user avatar
         requestBody:
           content:
             multipart/form-data:
@@ -122,7 +117,7 @@ App\Entity\User:
               schema:
                 type: object
                 properties:
-                  accesToken:
+                  accessToken:
                     type: string
                     required: true
         responses:
@@ -135,7 +130,6 @@ App\Entity\User:
                   properties:
                     token:
                       type: string
-
   itemOperations:
     get:
       method: GET
@@ -156,7 +150,7 @@ App\Entity\User:
       denormalization_context:
         groups: [user_activate]
       openapi_context:
-        summary: Activate a User
+        summary: Activates a user
     reset_password:
       method: PUT
       path: /users/{id}/reset_password
@@ -183,7 +177,6 @@ App\Entity\User:
               application/ld+json:
                 schema:
                   $ref: '#/components/schemas/User:jsonld-user_read'
-
     change_password:
       method: PUT
       path: /users/{id}/change_password
@@ -203,10 +196,9 @@ App\Entity\User:
                   newPassword:
                     type: string
                     required: true
-        responses:
-          200:
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/User:jsonld-user_read'
+  properties:
+    groups:
+      subresource:
+        resourceClass: App\Entity\Group
+        collection: true
+        maxDepth: 1
