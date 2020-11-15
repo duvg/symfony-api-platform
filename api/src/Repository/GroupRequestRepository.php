@@ -18,7 +18,7 @@ class GroupRequestRepository extends BaseRepository
 
     public function findOnePendingByGroupIdUserIdAndTokenOrFail(string $groupId, string $userId, string $token): GroupRequest
     {
-        if (null === $groupRequest = $this->objectRepository->findBy(
+        if (null === $groupRequest = $this->objectRepository->findOneBy(
                 [
                     'group' => $groupId,
                     'user' => $userId,

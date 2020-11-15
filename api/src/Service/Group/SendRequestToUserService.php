@@ -34,7 +34,7 @@ class SendRequestToUserService
     public function send(string $groupId, string $email, string $requestedId): void
     {
         $group = $this->groupRepository->findOneByIdOrFail($groupId);
-        $requester = $this->userRepository->findOneById($requestedId);
+        $requester = $this->userRepository->findOneByIdOrFail($requestedId);
         $receiver = $this->userRepository->findOneByEmailOrFail($email);
 
         if (!$group->isOwnedBy($requester)) {

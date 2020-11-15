@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions\Group;
+namespace App\Exception\Group;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

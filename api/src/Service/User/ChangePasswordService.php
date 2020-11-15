@@ -34,7 +34,7 @@ class ChangePasswordService
     public function changePassword(string $id, string $oldPassword, string $newPassword): User
     {
         // Get old and new password
-        $user = $this->userRepository->findOneById($id);
+        $user = $this->userRepository->findOneByIdOrFail($id);
 
         if (!$this->encoderService->isValidPassword($user, $oldPassword)) {
             throw PasswordException::oldPasswordDoesNotMatch();
