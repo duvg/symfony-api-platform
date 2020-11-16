@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
-use App\Exceptions\User\UserNotFoundException;
+use App\Exception\User\UserNotFoundException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Service\User\RequestResetPasswordService;
 use Symfony\Component\Messenger\Envelope;

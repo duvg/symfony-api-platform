@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
-use App\Exceptions\User\UserNotFoundException;
+use App\Exception\User\UserNotFoundException;
 use App\Service\User\ResetPasswordService;
 
 class ResetPasswordServiceTest extends UserServiceTestBase

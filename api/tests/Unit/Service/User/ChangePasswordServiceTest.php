@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
-use App\Exceptions\Password\PasswordException;
+use App\Exception\Password\PasswordException;
 use App\Service\User\ChangePasswordService;
 
 class ChangePasswordServiceTest extends UserServiceTestBase
@@ -28,7 +28,7 @@ class ChangePasswordServiceTest extends UserServiceTestBase
 
         $this->userRepository
             ->expects($this->exactly(1))
-            ->method('findOneById')
+            ->method('findOneByIdOrFail')
             ->with($this->isType('string'))
             ->willReturn($user);
 
@@ -51,7 +51,7 @@ class ChangePasswordServiceTest extends UserServiceTestBase
 
         $this->userRepository
             ->expects($this->exactly(1))
-            ->method('findOneById')
+            ->method('findOneByIdOrFail')
             ->with($this->isType('string'))
             ->willReturn($user);
 

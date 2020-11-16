@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\User;
 
 use App\Entity\User;
-use App\Exceptions\Password\PasswordException;
+use App\Exception\Password\PasswordException;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
 use Doctrine\ORM\OptimisticLockException;

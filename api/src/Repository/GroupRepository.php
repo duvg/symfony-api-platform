@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Group;
-use App\Exceptions\Group\GroupNotFoundException;
+use App\Exception\Group\GroupNotFoundException;
 
 
 class GroupRepository extends BaseRepository

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\User;
 
 use App\Entity\User;
-use App\Exceptions\User\UserAlreadyExistException;
+use App\Exception\User\UserAlreadyExistException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;

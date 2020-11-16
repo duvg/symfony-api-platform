@@ -33,32 +33,31 @@ class AcceptRequestService
      */
     public function accept(string $groupId, string $userId, string $token): void
     {
-        $this->groupRequestRepository->getEntityManager()->transactional(
-            function(EntityManagerInterface $em) use ($groupId, $userId, $token) {
-                $groupRequest = $this->groupRequestRepository->findOnePendingByGroupIdUserIdAndTokenOrFail(
-                    $groupId,
-                    $userId,
-                    $token
-                );
+        $groupRequest = $this->groupRequestRepository->findOnePendingByGroupIdUserIdAndTokenOrFail(
+            $groupId,
+            $userId,
+            $token
+        );
 
-                // change data in group_request
-                $groupRequest->setStatus(GroupRequest::ACCEPTED);
-                $groupRequest->setAcceptedAt(new \DateTime());
+        // change data in group_request
+        $groupRequest->setStatus(GroupRequest::ACCEPTED);
+        $groupRequest->setAcceptedAt(new \DateTime());
+
+        // get user and group and add this in the collection
+        $user = $this->userRepository->findOneByIdOrFail($userId);
+        $group = $this->groupRepository->findOneByIdOrFail($groupId);
+
+        $group->addUser($user);
+        $user->addGroup($group);
+
+        $this->groupRequestRepository->getEntityManager()->transactional(
+            function(EntityManagerInterface $em) use ($groupRequest, $group) {
 
                 // Persist groupRequest
                 $em->persist($groupRequest);
 
-                // get user and group and add this in the collection
-                $user = $this->userRepository->findOneByIdOrFail($userId);
-                $group = $this->groupRepository->findOneByIdOrFail($groupId);
-
-                $group->addUser($user);
-                $user->addGroup($group);
-
-
                 // Persist group
                 $em->persist($group);
-
             }
         );
     }

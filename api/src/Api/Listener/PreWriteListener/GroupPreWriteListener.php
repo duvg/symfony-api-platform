@@ -7,7 +7,7 @@ namespace App\Api\Listener\PreWriteListener;
 use App\Entity\Group;
 use App\Entity\User;
 use App\Exception\Group\CannotCreateGroupForAnotherUserException;
-use App\Exceptions\Group\GroupNotFoundException;
+use App\Exception\Group\GroupNotFoundException;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 

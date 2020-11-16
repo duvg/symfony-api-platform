@@ -6,13 +6,13 @@ namespace App\Service\Facebook;
 
 
 use App\Entity\User;
-use App\Exceptions\User\UserNotFoundException;
+use App\Exception\User\UserNotFoundException;
 use App\Http\FacebookClient;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Exception\FacebookSDKException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 

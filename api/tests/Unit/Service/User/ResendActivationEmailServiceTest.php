@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
-use App\Exceptions\User\UserIsActiveException;
+use App\Exception\User\UserIsActiveException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Service\User\ResendActivationEmailService;
 use Symfony\Component\Messenger\Envelope;

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\User;
+namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
 use App\Service\File\FileService;
 use App\Service\User\UploadAvatarService;
-use App\Tests\Unit\Service\User\UserServiceTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;

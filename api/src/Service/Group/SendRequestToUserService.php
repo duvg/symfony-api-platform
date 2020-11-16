@@ -20,15 +20,16 @@ class SendRequestToUserService
 {
     private UserRepository $userRepository;
     private GroupRepository $groupRepository;
-    private GroupRequestRepository $repository;
     private MessageBusInterface $messageBus;
+    private GroupRequestRepository $groupRequestRepository;
 
-    public function __construct(UserRepository $userRepository, GroupRepository $groupRepository, GroupRequestRepository  $repository, MessageBusInterface $messageBus)
+
+    public function __construct(UserRepository $userRepository, GroupRepository $groupRepository, GroupRequestRepository  $groupRequestRepository, MessageBusInterface $messageBus)
     {
         $this->userRepository = $userRepository;
         $this->groupRepository = $groupRepository;
-        $this->repository = $repository;
         $this->messageBus = $messageBus;
+        $this->groupRequestRepository = $groupRequestRepository;
     }
 
     public function send(string $groupId, string $email, string $requestedId): void
@@ -47,7 +48,7 @@ class SendRequestToUserService
 
         $groupRequest = new GroupRequest($group, $receiver);
 
-        $this->groupRepository->saveEntity($groupRequest);
+        $this->groupRequestRepository->save($groupRequest);
 
         $this->messageBus->dispatch(
             new GroupRequestMessage(

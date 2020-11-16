@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Password;
 
 use App\Entity\User;
-use App\Exceptions\Password\PasswordException;
+use App\Exception\Password\PasswordException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 

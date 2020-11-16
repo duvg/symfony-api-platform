@@ -6,8 +6,8 @@ namespace App\Tests\Unit\Service\User;
 
 
 use App\Entity\User;
-use App\Exceptions\Password\PasswordException;
-use App\Exceptions\User\UserAlreadyExistException;
+use App\Exception\Password\PasswordException;
+use App\Exception\User\UserAlreadyExistException;
 use App\Service\User\UserRegisterService;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\Messenger\Envelope;

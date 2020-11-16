@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\User;
 
 use App\Entity\User;
-use App\Exceptions\User\UserNotFoundException;
+use App\Exception\User\UserNotFoundException;
 use App\Service\User\ActivateAccountService;
 use Symfony\Component\Uid\Uuid;
 
