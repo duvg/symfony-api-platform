@@ -4,32 +4,36 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Symfony\Component\Uid\Uuid;
 
-class Group
+class Category
 {
+    public const EXPENSE = 'expense';
+    public const INCOME = 'income';
+
     private string $id;
     private string $name;
+    private string $type;
     private User $owner;
+    private ?Group $group;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
-    private Collection $users;
-    private Collection $categories;
 
-    public function __construct(string $name, User $owner)
+    public function __construct(string $name, string $type, User $owner, ?Group $group = null)
     {
         $this->id = Uuid::v4()->toRfc4122();
         $this->name = $name;
+        $this->type = $type;
         $this->owner = $owner;
+        $this->group = $group;
         $this->createdAt = new \DateTime();
         $this->markAsUpdated();
-        $this->users = new ArrayCollection([$owner]);
-        $owner->addGroup($this);
-        $this->categories = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
@@ -45,9 +49,19 @@ class Group
         $this->name = $name;
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function getOwner(): User
     {
         return $this->owner;
+    }
+
+    public function getGroup(): ?Group
+    {
+        return $this->group;
     }
 
     public function getCreatedAt(): \DateTime
@@ -65,45 +79,8 @@ class Group
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): void
-    {
-        if ($this->users->contains($user)) {
-            return;
-        }
-
-        $this->users->add($user);
-    }
-
-    public function removeUser(User $user): void
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-        }
-    }
-
-    public function containsUser(User $user): bool
-    {
-        return $this->users->contains($user);
-    }
-
     public function isOwnedBy(User $user): bool
     {
         return $this->owner->getId() === $user->getId();
-    }
-
-    /**
-     * @return Collection|Category[]
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
     }
 }
