@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use Doctrine\Common\Persistence;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -17,9 +18,7 @@ use Doctrine\Persistence\ObjectRepository;
 abstract class BaseRepository
 {
     private ManagerRegistry $managerRegistry;
-
     protected Connection $connection;
-
     protected ObjectRepository $objectRepository;
 
     public function __construct(ManagerRegistry $managerRegistry, Connection $connection)
@@ -84,20 +83,16 @@ abstract class BaseRepository
         $this->getEntityManager()->flush();
     }
 
-    /* query for insert and get data*/
-
     /**
-     * @return array|bool
-     *
-     * @throws Exception
+     * @throws DBALException
      */
     protected function executeFetchQuery(string $query, array $params = []): array
     {
-        return $this->connection->executeQuery($query, $params) > fetchAll();
+        return $this->connection->executeQuery($query, $params)->fetchAll();
     }
 
     /**
-     * @throws Exception
+     * @throws DBALException
      */
     protected function executeQuery(string $query, array $params = []): void
     {

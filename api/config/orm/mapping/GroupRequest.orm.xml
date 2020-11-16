@@ -8,7 +8,7 @@
         <field name="acceptedAt" type="datetime" nullable="true"/>
 
         <many-to-one field="group" target-entity="App\Entity\Group">
-            <join-column name="group_id" on-delete="CASCADE" />
+            <join-column name="group_id" on-delete="CASCADE"/>
         </many-to-one>
         <many-to-one field="user" target-entity="App\Entity\User">
             <join-column name="user_id" on-delete="CASCADE"/>

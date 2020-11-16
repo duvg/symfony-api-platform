@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Api\Action\Group;
 
-
 use App\Entity\User;
 use App\Service\Group\RemoveUserService;
 use App\Service\Request\RequestService;
@@ -13,9 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RemoveUser
 {
-    /**
-     * @var RemoveUserService
-     */
     private RemoveUserService $removeUserService;
 
     public function __construct(RemoveUserService $removeUserService)
@@ -24,7 +20,6 @@ class RemoveUser
     }
 
     /**
-     * @return JsonResponse
      * @throws \Throwable
      */
     public function __invoke(Request $request, User $user, string $id): JsonResponse

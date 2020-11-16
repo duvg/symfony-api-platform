@@ -77,7 +77,7 @@ App\Entity\Group:
                       type: string
     remove_user:
       method: PUT
-      path: /groups/{id}/remove_userr
+      path: /groups/{id}/remove_user
       controller: App\Api\Action\Group\RemoveUser
       deserialize: false
       openapi_context:

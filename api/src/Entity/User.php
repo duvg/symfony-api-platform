@@ -208,7 +208,7 @@ class User implements UserInterface
    public function removeGroup(Group $group): void
    {
         if ($this->groups->contains($group)) {
-            $this->groups->remove($group);
+            $this->groups->removeElement($group);
         }
    }
 

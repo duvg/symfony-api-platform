@@ -11,6 +11,6 @@ class OwnerCannotBeDeletedException extends ConflictHttpException
 {
     public function __construct()
     {
-        parent::__construct('Owner can not deleted from a group. Try deleting the group instead');
+        parent::__construct('Owner can not be deleted from a group. Try deleting the group instead.');
     }
 }
