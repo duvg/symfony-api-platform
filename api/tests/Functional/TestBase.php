@@ -110,4 +110,24 @@ class TestBase extends WebTestCase
     {
         return $this->initDbConnection()->fetchOne('SELECT id FROM user_group WHERE name = "Carlos Group"');
     }
+
+    protected function getYamidExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Expense Category"');
+    }
+
+    protected function getYamidGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Group Expense Category"');
+    }
+
+    protected function getCarlosExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Carlos Expense Category"');
+    }
+
+    protected function getCarlosGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Carlos Group Expense Category"');
+    }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-
 use Symfony\Component\Uid\Uuid;
 
 class Category
@@ -20,7 +19,7 @@ class Category
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
 
-    public function __construct(string $name, string $type, User $owner, ?Group $group = null)
+    public function __construct(string $name, string $type, User $owner, Group $group = null)
     {
         $this->id = Uuid::v4()->toRfc4122();
         $this->name = $name;
@@ -31,9 +30,6 @@ class Category
         $this->markAsUpdated();
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;

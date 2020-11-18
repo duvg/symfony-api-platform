@@ -24,7 +24,7 @@ final class Version20201116203822 extends AbstractMigration
                 name VARCHAR(30) NOT NULL,
                 type VARCHAR(8) NOT NULL,
                 owner_id CHAR(36) NOT NULL,
-                group_id CHAR(36) NOT NULL,
+                group_id CHAR(36) DEFAULT NULL,
                 created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 INDEX IDX_category_owner_id (owner_id),

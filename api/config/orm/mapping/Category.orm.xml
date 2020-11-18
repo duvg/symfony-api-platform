@@ -3,10 +3,10 @@
     <entity name="App\Entity\Category" table="category">
         <id name="id" type="string" length="36"/>
 
-        <field name="name" length="50" />
-        <field name="type" length="8" />
-        <field name="createdAt" type="datetime" />
-        <field name="updatedAt" type="datetime" />
+        <field name="name" length="50"/>
+        <field name="type" length="8"/>
+        <field name="createdAt" type="datetime"/>
+        <field name="updatedAt" type="datetime"/>
 
         <many-to-one field="owner" target-entity="App\Entity\User" inversed-by="categories"/>
         <many-to-one field="group" target-entity="App\Entity\Group" inversed-by="categories"/>

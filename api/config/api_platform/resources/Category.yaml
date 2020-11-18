@@ -1,7 +1,7 @@
 App\Entity\Category:
   attributes:
     normalization_context:
-      group: [category_read]
+      groups: [category_read]
   collectionOperations:
     post:
       method: POST
@@ -10,7 +10,7 @@ App\Entity\Category:
         groups: [category_create]
   itemOperations:
     get:
-      mehod: GET
+      method: GET
       security: is_granted("CATEGORY_READ", object)
     put:
       method: PUT
@@ -19,4 +19,4 @@ App\Entity\Category:
         groups: [category_update]
     delete:
       method: DELETE
-      securrity: is_granted("CATEGORY_DELETE", object)
+      security: is_granted("CATEGORY_DELETE", object)

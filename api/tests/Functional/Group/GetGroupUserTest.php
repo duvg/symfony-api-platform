@@ -29,6 +29,6 @@ class GetGroupUserTest extends GroupTestBase
 
 
         $this->assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
-        $this->assertEquals('You can\'t retrieve users another groups', $responseData['message']);
+        $this->assertEquals('You can\'t retrieve users of another group', $responseData['message']);
     }
 }

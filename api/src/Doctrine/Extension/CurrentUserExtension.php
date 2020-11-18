@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Doctrine\Extension;
 
-
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use App\Entity\Category;
@@ -57,7 +56,8 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
                     return;
                 }
             }
-            throw new AccessDeniedHttpException('You can\'t retrieve users another groups');
+
+            throw new AccessDeniedHttpException('You can\'t retrieve users of another group');
         }
 
         if (Category::class === $resourceClass) {
@@ -78,7 +78,7 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
     {
         try {
             return $user->isMemberOfGroup($this->groupRepository->findOneByIdOrFail($parameterId));
-        } catch (GroupNotFoundException  $e) {
+        } catch (GroupNotFoundException $e) {
             return false;
         }
     }

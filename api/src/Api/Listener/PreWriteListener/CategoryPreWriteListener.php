@@ -39,7 +39,7 @@ class CategoryPreWriteListener implements PreWriteListener
 
             // Check is type is supported
             $type = $category->getType();
-            if (\in_array($type, [Category::EXPENSE, Category::INCOME])) {
+            if ( ! \in_array($type, [Category::EXPENSE, Category::INCOME])) {
                 throw UnsupportedCategoryTypeException::fromType($type);
             }
 
@@ -51,7 +51,7 @@ class CategoryPreWriteListener implements PreWriteListener
             }
 
             // check if authenticated user is not owner
-            if ($category->isOwnedBy($tokenUser)) {
+            if ( ! $category->isOwnedBy($tokenUser)) {
                 throw new CannotCreateGroupForAnotherUserException();
             }
 

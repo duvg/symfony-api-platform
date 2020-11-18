@@ -1,0 +1,45 @@
+App\Entity\Category:
+  Category-0:
+    __construct:
+      name: Yamid Expense Category
+      type: expense
+      owner: '@User-0'
+  Category-1:
+    __construct:
+      name: Yamid Income Category
+      type: income
+      owner: '@User-0'
+  Category-2:
+    __construct:
+      name: Yamid Group Expense Category
+      type: expense
+      owner: '@User-0'
+      group: '@Group-0'
+  Category-3:
+    __construct:
+      name: Yamid Group Income Category
+      type: income
+      owner: '@User-0'
+      group: '@Group-0'
+  Category-4:
+    __construct:
+      name: Carlos Expense Category
+      type: expense
+      owner: '@User-1'
+  Category-5:
+    __construct:
+      name: Carlos Income Category
+      type: income
+      owner: '@User-1'
+  Category-6:
+    __construct:
+      name: Carlos Group Expense Category
+      type: expense
+      owner: '@User-1'
+      group: '@Group-1'
+  Category-7:
+    __construct:
+      name: Carlos Group Income Category
+      type: income
+      owner: '@User-1'
+      group: '@Group-1'
