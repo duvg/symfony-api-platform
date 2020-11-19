@@ -91,9 +91,54 @@ class TestBase extends WebTestCase
         return $this->initDbConnection()->fetchOne('SELECT id FROM user WHERE email = "yamid@api.com"');
     }
 
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
     protected function getYamidGroupId()
     {
         return $this->initDbConnection()->fetchOne('SELECT id FROM user_group WHERE name = "Yamid Group"');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getYamidExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Expense Category"');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getYamidGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Group Expense Category"');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getYamidMovementId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM movement WHERE amount = 200');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getYamidGroupMovementId()
+    {
+        return  $this->initDbConnection()->fetchOne('SELECT id FROM movement WHERE amount = 300');
     }
 
     /**
@@ -106,28 +151,53 @@ class TestBase extends WebTestCase
         return $this->initDbConnection()->fetchOne('SELECT id FROM user WHERE email = "carlos@api.com"');
     }
 
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
     protected function getCarlosGroupId()
     {
         return $this->initDbConnection()->fetchOne('SELECT id FROM user_group WHERE name = "Carlos Group"');
     }
 
-    protected function getYamidExpenseCategoryId()
-    {
-        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Expense Category"');
-    }
-
-    protected function getYamidGroupExpenseCategoryId()
-    {
-        return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Yamid Group Expense Category"');
-    }
-
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
     protected function getCarlosExpenseCategoryId()
     {
         return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Carlos Expense Category"');
     }
 
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
     protected function getCarlosGroupExpenseCategoryId()
     {
         return $this->initDbConnection()->fetchOne('SELECT id FROM category WHERE name = "Carlos Group Expense Category"');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getCarlosMovementId()
+    {
+        return $this->initDbConnection()->fetchOne('SELECT id FROM movement WHERE amount = 1000');
+    }
+
+    /**
+     * @return false|mixed
+     *
+     * @throws DBALException|Exception
+     */
+    protected function getCarlosGroupMovementId()
+    {
+        return  $this->initDbConnection()->fetchOne('SELECT id FROM movement WHERE amount = 2000');
     }
 }
