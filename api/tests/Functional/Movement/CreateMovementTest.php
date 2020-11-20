@@ -30,8 +30,8 @@ class CreateMovementTest extends MovementTestBase
         $responseData = $this->getResponseData($response);
 
         $this->assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
-        $this->assertEquals($payload['category'], $responseData['category']);
-        $this->assertEquals($payload['owner'], $responseData['owner']);
+        $this->assertEquals($payload['category'], $responseData['category']['@id']);
+        $this->assertEquals($payload['owner'], $responseData['owner']['@id']);
         $this->assertEquals($payload['amount'], $responseData['amount']);
     }
 
@@ -101,9 +101,9 @@ class CreateMovementTest extends MovementTestBase
         $responseData = $this->getResponseData($response);
 
         $this->assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
-        $this->assertEquals($payload['category'], $responseData['category']);
-        $this->assertEquals($payload['owner'], $responseData['owner']);
-        $this->assertEquals($payload['group'], $responseData['group']);
+        $this->assertEquals($payload['category'], $responseData['category']['@id']);
+        $this->assertEquals($payload['owner'], $responseData['owner']['@id']);
+        $this->assertEquals($payload['group'], $responseData['group']['@id']);
         $this->assertEquals($payload['amount'], $responseData['amount']);
     }
 

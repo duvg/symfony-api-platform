@@ -29,7 +29,7 @@ class UpdateMovementTest extends MovementTestBase
 
         $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
         $this->assertEquals($payload['amount'], $responseData['amount']);
-        $this->assertEquals($payload['category'], $responseData['category']);
+        $this->assertEquals($payload['category'], $responseData['category']['@id']);
     }
 
     public function testUpdateAnotherUserMovement(): void
@@ -89,7 +89,6 @@ class UpdateMovementTest extends MovementTestBase
             \json_encode($payload)
         );
         $response = self::$yamid->getResponse();
-        $responseData = $this->getResponseData($response);
 
         $this->assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
