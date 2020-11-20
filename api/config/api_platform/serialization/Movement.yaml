@@ -11,7 +11,7 @@ App\Entity\Movement:
     amount:
       groups: [movement_read, movement_create, movement_update]
     filePath:
-      groups: [movement_raed]
+      groups: [movement_read]
     createAt:
       groups: [movement_read]
     updatedAt:
